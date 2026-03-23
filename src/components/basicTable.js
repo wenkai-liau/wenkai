@@ -28,112 +28,74 @@ function createData(language, experience, preference) {
   return { language, experience, preference };
 }
 
+const iconStyle = { marginRight: 8, height: 24, width: 24 };
+
 const rows = [
   createData(
     <Grid container alignItems="center">
-      <PythonLogo
-        style={{ marginRight: 2, height: 30, width: 30 }}
-      ></PythonLogo>
-      Python
+      <PythonLogo style={iconStyle} /> Python
     </Grid>,
-    2,
-    3
+    2, 3
   ),
   createData(
     <Grid container alignItems="center">
-      <JavaLogo style={{ marginRight: 2, height: 30, width: 30 }}></JavaLogo>
-      Java
+      <JavaLogo style={iconStyle} /> Java
     </Grid>,
-    2,
-    3
+    2, 3
   ),
   createData(
     <Grid container alignItems="center">
-      <JSLogo style={{ marginRight: 2, height: 30, width: 30 }}></JSLogo>
-      Javascript
+      <JSLogo style={iconStyle} /> Javascript
     </Grid>,
-    2,
-    2
+    2, 2
   ),
   createData(
     <Grid container alignItems="center">
-      <MatlabLogo
-        style={{ marginRight: 2, height: 30, width: 30 }}
-      ></MatlabLogo>
-      Matlab
+      <MatlabLogo style={iconStyle} /> Matlab
     </Grid>,
-    1,
-    1
+    1, 1
   ),
   createData(
     <Grid container alignItems="center">
-      <TSLogo style={{ marginRight: 2, height: 30, width: 30 }}></TSLogo>
-      Typescript
+      <TSLogo style={iconStyle} /> Typescript
     </Grid>,
-    1,
-    3
+    1, 3
   ),
   createData(
     <Grid container alignItems="center">
-      <CLogo style={{ marginRight: 2, height: 30, width: 30 }}></CLogo>C
+      <CLogo style={iconStyle} /> C
     </Grid>,
-    0,
-    0
+    0, 0
   ),
   createData(
     <Grid container alignItems="center">
-      <PerlLogo style={{ marginRight: 2, height: 30, width: 30 }}></PerlLogo>
-      Perl
+      <PerlLogo style={iconStyle} /> Perl
     </Grid>,
-    0,
-    0
+    0, 0
   ),
   createData(
     <Grid container alignItems="center">
-      <GoLogo style={{ marginRight: 2, height: 30, width: 30 }}></GoLogo>
-      Go
+      <GoLogo style={iconStyle} /> Go
     </Grid>,
-    2,
-    2
+    2, 2
   ),
   createData(
     <Grid container alignItems="center">
-      <CPlusLogo style={{ marginRight: 2, height: 30, width: 30 }}></CPlusLogo>
-      C++
+      <CPlusLogo style={iconStyle} /> C++
     </Grid>,
-    0,
-    2
+    0, 2
   ),
 ];
 
 const headCells = [
-  {
-    id: "language",
-    numeric: false,
-    disablePadding: true,
-    label: "Language",
-  },
-  {
-    id: "experience",
-    numeric: true,
-    disablePadding: false,
-    label: "Experience",
-  },
-  {
-    id: "preference",
-    numeric: true,
-    disablePadding: false,
-    label: "Preference",
-  },
+  { id: "language", numeric: false, disablePadding: true, label: "Language" },
+  { id: "experience", numeric: true, disablePadding: false, label: "Experience" },
+  { id: "preference", numeric: true, disablePadding: false, label: "Preference" },
 ];
 
 function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
+  if (b[orderBy] < a[orderBy]) return -1;
+  if (b[orderBy] > a[orderBy]) return 1;
   return 0;
 }
 
@@ -147,9 +109,7 @@ function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
+    if (order !== 0) return order;
     return a[1] - b[1];
   });
   return stabilizedThis.map((el) => el[0]);
@@ -169,11 +129,21 @@ function EnhancedTableHead(props) {
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}
             sortDirection={orderBy === headCell.id ? order : false}
+            style={{
+              fontWeight: 600,
+              color: "#94a3b8",
+              fontSize: 13,
+              textTransform: "uppercase",
+              letterSpacing: "0.5px",
+              borderBottom: "1px solid rgba(255,255,255,0.08)",
+              backgroundColor: "rgba(17, 24, 39, 0.9)",
+            }}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
+              style={{ color: "#94a3b8" }}
             >
               {headCell.label}
             </TableSortLabel>
@@ -185,8 +155,26 @@ function EnhancedTableHead(props) {
 }
 
 const useStyles = makeStyles((theme) => ({
+  wrapper: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: 60,
+  },
+  sectionTitle: {
+    textAlign: "center",
+    marginBottom: 24,
+    fontWeight: 700,
+    background: "linear-gradient(135deg, #38bdf8 0%, #a78bfa 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
+  },
   paperContainer: {
-    marginTop: 10,
+    backgroundColor: "rgba(17, 24, 39, 0.6)",
+    border: "1px solid rgba(255, 255, 255, 0.06)",
+    borderRadius: 16,
+    overflow: "hidden",
     [theme.breakpoints.down("xs")]: {
       width: "100%",
     },
@@ -194,9 +182,24 @@ const useStyles = makeStyles((theme) => ({
       width: "75%",
     },
   },
+  tableRow: {
+    transition: "background-color 0.2s ease",
+    "&:hover": {
+      backgroundColor: "rgba(56, 189, 248, 0.04) !important",
+    },
+    "&:nth-of-type(odd)": {
+      backgroundColor: "rgba(255, 255, 255, 0.02)",
+    },
+  },
+  tableCell: {
+    color: "#e2e8f0",
+    borderBottom: "1px solid rgba(255, 255, 255, 0.04)",
+    fontSize: 14,
+    fontWeight: 500,
+  },
 }));
 
-const BasicTable = (props) => {
+const BasicTable = () => {
   const classes = useStyles();
 
   const [order, setOrder] = React.useState("desc");
@@ -209,60 +212,75 @@ const BasicTable = (props) => {
   };
 
   const mapExperience = (num) => {
-    if (num === 0) {
-      return <Grid style={{ color: "#228B22" }}>Comfortable</Grid>;
-    } else if (num === 1) {
-      return <Grid style={{ color: "	#ff8503" }}>Very Comfortable</Grid>;
-    } else {
-      return <Grid style={{ color: "red" }}>Experienced</Grid>;
-    }
+    const styles = {
+      0: { color: "#34d399", label: "Comfortable" },
+      1: { color: "#fbbf24", label: "Very Comfortable" },
+      2: { color: "#f87171", label: "Experienced" },
+    };
+    const { color, label } = styles[num] || styles[0];
+    return (
+      <span
+        style={{
+          color,
+          fontWeight: 500,
+          fontSize: 13,
+          padding: "4px 10px",
+          borderRadius: 6,
+          backgroundColor: `${color}15`,
+        }}
+      >
+        {label}
+      </span>
+    );
   };
 
   const mapPreferences = (num) => {
-    if (num === 0) {
-      return <Grid style={{ color: "#ffbaba" }}>Low</Grid>;
-    } else if (num === 1) {
-      return <Grid style={{ color: "#ff5252" }}>Medium</Grid>;
-    } else if (num === 2) {
-      return <Grid style={{ color: "#ff0000" }}>High</Grid>;
-    } else {
-      return <Grid style={{ color: "#a70000" }}>Very High</Grid>;
-    }
+    const styles = {
+      0: { color: "#64748b", label: "Low" },
+      1: { color: "#94a3b8", label: "Medium" },
+      2: { color: "#38bdf8", label: "High" },
+      3: { color: "#a78bfa", label: "Very High" },
+    };
+    const { color, label } = styles[num] || styles[0];
+    return (
+      <span
+        style={{
+          color,
+          fontWeight: 500,
+          fontSize: 13,
+          padding: "4px 10px",
+          borderRadius: 6,
+          backgroundColor: `${color}15`,
+        }}
+      >
+        {label}
+      </span>
+    );
   };
 
   return (
-    <Grid
-      container
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: 200,
-      }}
-    >
-      <Typography variant="h4">Programming Languages</Typography>
-      <Paper className={classes.paperContainer}>
+    <div className={classes.wrapper}>
+      <Typography variant="h4" className={classes.sectionTitle}>
+        Programming Languages
+      </Typography>
+      <Paper className={classes.paperContainer} elevation={0}>
         <TableContainer>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table aria-label="programming languages table">
             <EnhancedTableHead
               order={order}
               orderBy={orderBy}
               onRequestSort={handleRequestSort}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy)).map((row) => (
-                <TableRow
-                  hover
-                  key={row.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
+              {stableSort(rows, getComparator(order, orderBy)).map((row, idx) => (
+                <TableRow hover key={idx} className={classes.tableRow}>
+                  <TableCell component="th" scope="row" className={classes.tableCell}>
                     {row.language}
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="right" className={classes.tableCell}>
                     {mapExperience(row.experience)}
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="right" className={classes.tableCell}>
                     {mapPreferences(row.preference)}
                   </TableCell>
                 </TableRow>
@@ -271,7 +289,7 @@ const BasicTable = (props) => {
           </Table>
         </TableContainer>
       </Paper>
-    </Grid>
+    </div>
   );
 };
 

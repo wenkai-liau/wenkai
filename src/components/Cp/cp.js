@@ -1,6 +1,6 @@
 import { Grid, makeStyles, Tab, Tabs, Typography } from "@material-ui/core";
 import { AccessTime, Code, Link } from "@material-ui/icons";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import codeforces from "../../images/codeforces.png";
 import leetcode from "../../images/leetcode.png";
 import TabPanel from "../../common/tabPanel";
@@ -15,13 +15,24 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     height: "100%",
-    margin: "2% 1%",
-    // backgroundColor: 'grey'
+    padding: "80px 2% 20px",
+    backgroundColor: "#0a0f1a",
+    minHeight: "100vh",
   },
-  imgContainer: {
-    display: "flex",
-    height: 400,
-    justifyContent: "center",
+  tabsRoot: {
+    borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+  },
+  tabRoot: {
+    color: "#94a3b8",
+    fontWeight: 500,
+    textTransform: "none",
+    minWidth: 100,
+    "&.Mui-selected": {
+      color: "#38bdf8",
+    },
+  },
+  tabIndicator: {
+    backgroundColor: "#38bdf8",
   },
 }));
 
@@ -49,16 +60,18 @@ const CP = (props) => {
       <Tabs
         onChange={handleTabChange}
         value={tabValue}
-        textColor="primary"
-        indicatorColor="primary"
+        classes={{
+          root: classes.tabsRoot,
+          indicator: classes.tabIndicator,
+        }}
       >
         <Tab
-          className={classes.tabStyles}
+          classes={{ root: classes.tabRoot }}
           value={0}
           label={createText("Upcoming", <AccessTime />)}
         />
         <Tab
-          className={classes.tabStyles}
+          classes={{ root: classes.tabRoot }}
           value={1}
           label={createText(
             "Leetcode",
@@ -66,12 +79,13 @@ const CP = (props) => {
               src={leetcode}
               width={24}
               height={24}
+              alt="LeetCode"
               style={{ alignSelf: "center" }}
             />
           )}
         />
         <Tab
-          className={classes.tabStyles}
+          classes={{ root: classes.tabRoot }}
           value={2}
           label={createText(
             "Codeforces",
@@ -79,12 +93,13 @@ const CP = (props) => {
               src={codeforces}
               width={24}
               height={24}
+              alt="Codeforces"
               style={{ alignSelf: "center" }}
             />
           )}
         />
         <Tab
-          className={classes.tabStyles}
+          classes={{ root: classes.tabRoot }}
           value={3}
           label={createText("Atcoder", <Link />)}
         />

@@ -1,17 +1,13 @@
 import {
   Card,
   CardContent,
-  CardMedia,
   Grid,
   makeStyles,
-  Tab,
-  Tabs,
-  Tooltip,
   Typography,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useUpcomingEvents from "../../hooks/useUpcomingEvents";
-import moment from "moment";
+import moment from "moment-timezone";
 import Calendar from "react-calendar";
 import "./Calendar.css";
 import _ from "lodash";
@@ -25,18 +21,17 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     margin: "2% 1%",
     justifyContent: "space-around",
+    flexWrap: "wrap",
   },
   itemContainer: {
     padding: 10,
-    [theme.breakpoints.down("xs")]: {
-      width: "100%",
-    },
-    [theme.breakpoints.up("sm")]: {
-      width: "100%",
-    },
+    width: "100%",
   },
   cardContainer: {
     margin: "30px 0px",
+    backgroundColor: "#111827",
+    borderRadius: 12,
+    border: "1px solid rgba(255,255,255,0.06)",
     [theme.breakpoints.down("xs")]: {
       width: "100%",
     },
@@ -44,15 +39,28 @@ const useStyles = makeStyles((theme) => ({
       width: "45%",
     },
   },
+  noEventsText: {
+    color: "#94a3b8",
+    textAlign: "center",
+    padding: "40px 20px",
+    fontSize: 16,
+  },
 }));
 
 const UpcomingEventPage = (props) => {
   const classes = useStyles();
-  const [currentTimezone, setCurrentTimezone] = useState(moment.tz.guess());
+  const [currentTimezone] = useState(() => {
+    try {
+      return moment.tz.guess();
+    } catch {
+      return "UTC";
+    }
+  });
   const [selDate, setSelDate] = useState(new Date());
   const currentTime = moment.tz(new Date(), currentTimezone);
 
   const { formatData } = useUpcomingEvents();
+
   const tileClassName = ({ date, view }) => {
     if (view === "month") {
       for (let i = 0; i < formatData.length; i++) {
@@ -123,13 +131,13 @@ const UpcomingEventPage = (props) => {
 
   const getPlatformColor = (type) => {
     if (type === "LEETCODE") {
-      return "#fcba03";
+      return "#fbbf24";
     } else if (type === "CODEFORCES") {
-      return "#B22222";
-    } else if ("ATCODER") {
-      return "#008080";
+      return "#f87171";
+    } else if (type === "ATCODER") {
+      return "#34d399";
     } else {
-      return "white";
+      return "#e2e8f0";
     }
   };
 
@@ -146,6 +154,8 @@ const UpcomingEventPage = (props) => {
     );
   };
 
+  const hasEvents = !_.isEmpty(formatData) && !_.isUndefined(formatData[0]);
+
   return (
     <Grid item container className={classes.container}>
       <Card className={classes.cardContainer}>
@@ -153,32 +163,28 @@ const UpcomingEventPage = (props) => {
           <Grid container item>
             <Grid container item>
               <Grid item container alignItems="center">
-                <Typography variant="h6" style={{ width: "30%" }}>
+                <Typography variant="h6" style={{ width: "30%", color: "#e2e8f0" }}>
                   {`Next Event:`}
                 </Typography>
                 <Typography
                   variant="h6"
                   style={{
                     width: "70%",
-                    color: getPlatformColor(
-                      formatData[0] && formatData[0].type
-                    ),
+                    color: hasEvents
+                      ? getPlatformColor(formatData[0].type)
+                      : "#94a3b8",
                   }}
                 >
-                  {`${_.isUndefined(formatData[0]) ? "" : formatData[0].name}`}
+                  {hasEvents ? formatData[0].name : "No upcoming events"}
                 </Typography>
               </Grid>
 
               <Grid item container alignItems="center">
-                <Typography variant="h6" style={{ width: "30%" }}>
+                <Typography variant="h6" style={{ width: "30%", color: "#e2e8f0" }}>
                   {`Start Time:`}
                 </Typography>
-                <Typography variant="h6" style={{ width: "70%" }}>
-                  {`${
-                    _.isUndefined(formatData[0])
-                      ? ""
-                      : formatData[0].dateObj.toDateString()
-                  }`}
+                <Typography variant="h6" style={{ width: "70%", color: "#94a3b8" }}>
+                  {hasEvents ? formatData[0].dateObj.toDateString() : "—"}
                 </Typography>
               </Grid>
             </Grid>
@@ -192,7 +198,7 @@ const UpcomingEventPage = (props) => {
                 justifyContent: "center",
               }}
             >
-              {!_.isEmpty(formatData) && !_.isUndefined(formatData[0]) && (
+              {hasEvents && (
                 <Clocks
                   startDate={currentTime.toDate()}
                   endDate={formatData[0].dateObj}
@@ -206,10 +212,10 @@ const UpcomingEventPage = (props) => {
       <Card className={classes.cardContainer}>
         <CardContent>
           <Grid item container alignItems="center">
-            <Typography variant="h6" style={{ width: "30%" }}>
+            <Typography variant="h6" style={{ width: "30%", color: "#e2e8f0" }}>
               {`Selected Date:`}
             </Typography>
-            <Typography variant="h6" style={{ width: "70%" }}>
+            <Typography variant="h6" style={{ width: "70%", color: "#94a3b8" }}>
               {`${_.isUndefined(selDate) ? "" : selDate.toDateString()}`}
             </Typography>
           </Grid>
@@ -221,23 +227,27 @@ const UpcomingEventPage = (props) => {
             justifyContent="center"
             style={{ marginTop: 20 }}
           >
-            <Typography variant="h5" style={{ width: "30%" }}>
+            <Typography variant="h5" style={{ width: "30%", color: "#e2e8f0" }}>
               {`Events:`}
             </Typography>
-            <Grid item variant="h6" style={{ width: "70%" }}>
-              {getSelectedDateEvents().events.map((event, idx) => {
-                return (
+            <Grid item style={{ width: "70%" }}>
+              {getSelectedDateEvents().events.length > 0 ? (
+                getSelectedDateEvents().events.map((event, idx) => (
                   <Typography
                     key={idx}
-                    variant="h5"
+                    variant="h6"
                     style={{ color: getPlatformColor(event.type) }}
                   >
                     {`${event.name} [${event.dateObj.toLocaleTimeString(
                       "en-US"
                     )}]`}
                   </Typography>
-                );
-              })}
+                ))
+              ) : (
+                <Typography style={{ color: "#64748b" }}>
+                  No events on this date
+                </Typography>
+              )}
             </Grid>
           </Grid>
         </CardContent>

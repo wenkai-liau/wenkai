@@ -1,58 +1,49 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
-import "../App.css";
 import logo from "../svg/react_logo.svg";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor: "#242e2b",
+    backgroundColor: "#0d1117",
+    borderTop: "1px solid rgba(255, 255, 255, 0.06)",
     [theme.breakpoints.down("xs")]: {
       height: 50,
+      padding: "0 4%",
     },
     [theme.breakpoints.up("sm")]: {
-      height: 70,
+      height: 64,
+      padding: "0 5%",
     },
     justifyContent: "space-between",
-    padding: "0% 2%",
-  },
-  gridContainer: {
     alignItems: "center",
     display: "flex",
   },
-  typographyContainerOne: {
-    color: "#a8adac",
-    fontWeight: "bold",
+  leftSection: {
     display: "flex",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 10,
-    },
-    [theme.breakpoints.up("sm")]: {
-      fontSize: 18,
-    },
-  },
-  typographyContainerTwo: {
-    display: "flex",
-    color: "#a8adac",
-    fontWeight: "bold",
     alignItems: "center",
-    justifyContent: "center",
+    gap: 10,
+  },
+  text: {
+    color: "#64748b",
+    fontWeight: 500,
     [theme.breakpoints.down("xs")]: {
-      fontSize: 10,
+      fontSize: 11,
     },
     [theme.breakpoints.up("sm")]: {
-      fontSize: 18,
+      fontSize: 14,
     },
   },
   rotateIcon: {
     animation: "$spin 7s linear infinite",
     [theme.breakpoints.down("xs")]: {
+      height: 22,
+      width: 22,
+    },
+    [theme.breakpoints.up("sm")]: {
       height: 30,
       width: 30,
     },
-    [theme.breakpoints.up("sm")]: {
-      height: 50,
-      width: 50,
-    },
+    filter: "brightness(0.7)",
   },
   "@keyframes spin": {
     "0%": {
@@ -62,24 +53,29 @@ const useStyles = makeStyles((theme) => ({
       transform: "rotate(0deg)",
     },
   },
+  byText: {
+    color: "#475569",
+    fontWeight: 500,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: 11,
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: 14,
+    },
+  },
 }));
 
-const FooterBar = (props) => {
+const FooterBar = () => {
   const classes = useStyles();
 
   return (
     <Grid container className={classes.container}>
-      <Grid item className={classes.gridContainer}>
-        <Typography className={classes.typographyContainerOne}>
-          Created With React
-        </Typography>
-        <Grid item>
-          <img src={logo} className={classes.rotateIcon} />
-        </Grid>
-      </Grid>
-
-      <Typography className={classes.typographyContainerTwo}>
-        By Wen Kai
+      <div className={classes.leftSection}>
+        <Typography className={classes.text}>Built with React</Typography>
+        <img src={logo} className={classes.rotateIcon} alt="React" />
+      </div>
+      <Typography className={classes.byText}>
+        © {new Date().getFullYear()} Wen Kai
       </Typography>
     </Grid>
   );

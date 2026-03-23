@@ -25,7 +25,7 @@ const useCodeforces = () => {
 
   useDidMountEffect(() => {
     axios
-      .get(`https://codeforces.com/api/user.rating?handle=wKai000`)
+      .get(`https://codeforces.com/api/user.rating?handle=lwenkai`)
       .then((res) => {
         setRatingData(
           _.map(res.data.result, (rs) => {
@@ -39,7 +39,7 @@ const useCodeforces = () => {
       });
 
     axios
-      .get(`https://codeforces.com/api/user.status?handle=wKai000`)
+      .get(`https://codeforces.com/api/user.status?handle=lwenkai`)
       .then((res) => {
         setSubmissionsData(res.data.result);
       });

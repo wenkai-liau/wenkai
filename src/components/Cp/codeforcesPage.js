@@ -243,9 +243,9 @@ const CodeforcesPage = (props) => {
         </Button>
         <DialogCustom
           title={dialogTitle("Open new tab?")}
-          content={"https://codeforces.com/profile/wKai000"}
+          content={"https://codeforces.com/profile/lwenkai"}
           open={open}
-          handleSubmit={onClickURL("https://codeforces.com/profile/wKai000")}
+          handleSubmit={onClickURL("https://codeforces.com/profile/lwenkai")}
           handleClose={handleClose}
         />
       </Grid>

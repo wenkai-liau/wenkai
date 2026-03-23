@@ -1,7 +1,5 @@
 import {
   Grid,
-  List,
-  ListItem,
   ListItemIcon,
   makeStyles,
   Typography,
@@ -9,12 +7,11 @@ import {
 import {
   ChromeReaderMode,
   Computer,
-  Image,
   LocalCafe,
   Pool,
   Timeline,
 } from "@material-ui/icons";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import BasicTable from "./basicTable";
 import { ReactComponent as ReactLogo } from "../svg/react_logo.svg";
 import { ReactComponent as SpringLogo } from "../svg/spring_logo.svg";
@@ -44,323 +41,282 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     display: "flex",
     flexDirection: "column",
-    height: "100%",
+    backgroundColor: "#0a0f1a",
   },
-  imgContainer: {
+  heroWrapper: {
+    position: "relative",
+    width: "100%",
+  },
+  heroOverlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     display: "flex",
-    height: 400,
+    flexDirection: "column",
     justifyContent: "center",
+    alignItems: "center",
+    zIndex: 11,
+    pointerEvents: "none",
+  },
+  heroTitle: {
+    fontWeight: 800,
+    color: "#fff",
+    textShadow: "0 4px 30px rgba(0,0,0,0.6)",
+    letterSpacing: "-1px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.8rem",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "3.2rem",
+    },
+  },
+  heroSubtitle: {
+    color: "rgba(255,255,255,0.85)",
+    fontWeight: 400,
+    textShadow: "0 2px 20px rgba(0,0,0,0.5)",
+    marginTop: 8,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.9rem",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "1.2rem",
+    },
   },
   contentContainer: {
-    padding: "1% 5%",
+    padding: "0 5%",
+    maxWidth: 1200,
+    margin: "0 auto",
+    width: "100%",
+  },
+  sectionTitle: {
+    textAlign: "center",
+    marginBottom: 30,
+    fontWeight: 700,
+    background: "linear-gradient(135deg, #38bdf8 0%, #a78bfa 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
   },
   aboutMeContainer: {
     flexDirection: "column",
-    [theme.breakpoints.down("xs")]: {
-      marginTop: 15,
+    marginTop: 40,
+    padding: "40px 0",
+  },
+  interestCard: {
+    background: "rgba(17, 24, 39, 0.8)",
+    border: "1px solid rgba(255, 255, 255, 0.06)",
+    borderRadius: 12,
+    padding: "12px 20px",
+    margin: "6px 0",
+    display: "flex",
+    alignItems: "center",
+    transition: "all 0.3s ease",
+    "&:hover": {
+      border: "1px solid rgba(56, 189, 248, 0.2)",
+      backgroundColor: "rgba(56, 189, 248, 0.05)",
+      transform: "translateX(8px)",
     },
-    [theme.breakpoints.up("sm")]: {
-      marginTop: 25,
+  },
+  interestIcon: {
+    minWidth: 40,
+    color: "#38bdf8",
+  },
+  interestText: {
+    color: "#e2e8f0",
+    fontWeight: 500,
+    fontSize: 16,
+  },
+  introText: {
+    color: "#94a3b8",
+    textAlign: "center",
+    lineHeight: 1.7,
+    fontSize: 16,
+    maxWidth: 600,
+    margin: "0 auto",
+  },
+  // Frameworks & Tools
+  techSection: {
+    marginTop: 60,
+    padding: "40px 0",
+  },
+  techGrid: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: 20,
+    marginTop: 10,
+  },
+  techCard: {
+    background: "rgba(17, 24, 39, 0.6)",
+    border: "1px solid rgba(255, 255, 255, 0.06)",
+    borderRadius: 16,
+    padding: "20px 16px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 100,
+    height: 100,
+    transition: "all 0.3s ease",
+    "&:hover": {
+      border: "1px solid rgba(56, 189, 248, 0.3)",
+      transform: "translateY(-4px)",
+      boxShadow: "0 8px 30px rgba(56, 189, 248, 0.1)",
     },
+  },
+  techLabel: {
+    color: "#94a3b8",
+    fontSize: 11,
+    fontWeight: 500,
+    marginTop: 6,
+    textAlign: "center",
   },
   logoStyle: {
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
   },
-  subContentContainer: {
-    [theme.breakpoints.down("xs")]: {
-      marginTop: 100,
-    },
-    [theme.breakpoints.up("sm")]: {
-      marginTop: 250,
-    },
-  },
-  othersContainer: {
-    [theme.breakpoints.down("xs")]: {
-      marginTop: 50,
-    },
-    [theme.breakpoints.up("sm")]: {
-      marginTop: 100,
-    },
+  missionText: {
+    color: "#64748b",
+    textAlign: "center",
+    lineHeight: 1.8,
+    fontSize: 14,
+    marginTop: 20,
+    maxWidth: 500,
+    margin: "20px auto 0",
   },
 }));
 
-const About = (props) => {
+const About = () => {
   const classes = useStyles();
-  //   const {tabValue, handleTabChange} = props
-
-  const createText = (text, icon) => {
-    return (
-      <Grid container align="center">
-        <ListItemIcon style={{ marginTop: 3 }}>{icon}</ListItemIcon>
-        <Typography item variant="h6">
-          {text}
-        </Typography>
-      </Grid>
-    );
-  };
-
-  const renderLanguageTable = () => {
-    return <BasicTable />;
-  };
-
-  const reactFrameworkRow = (logoComponent, text) => {
-    return (
-      <Grid container item style={{ height: 100, flexDirection: "column" }}>
-        <Grid>{logoComponent}</Grid>
-        {text !== "" && <Grid style={{ textAlign: "center" }}>{text}</Grid>}
-      </Grid>
-    );
-  };
-
-  const renderFrameWorks = () => {
-    return (
-      <Grid
-        container
-        justify="center"
-        align="center"
-        className={classes.subContentContainer}
-      >
-        <Typography item variant="h4" justify="center" align="center">
-          Frameworks and Databases
-        </Typography>
-        <Grid container style={{ flexDirection: "row" }}>
-          <Grid
-            container
-            item
-            style={{
-              width: "50%",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
-            {reactFrameworkRow(
-              <ReactLogo
-                className={classes.logoStyle}
-                style={{ margin: 0, width: 70, height: 70 }}
-              />,
-              "React JS"
-            )}
-            {reactFrameworkRow(
-              <ReactLogo
-                className={classes.logoStyle}
-                style={{ marginBottom: 0, width: 70, height: 70 }}
-              />,
-              "React TS"
-            )}
-            {reactFrameworkRow(
-              <SpringLogo
-                className={classes.logoStyle}
-                style={{ marginTop: 15 }}
-              />,
-              "Spring"
-            )}
-            {reactFrameworkRow(
-              <FlaskLogo
-                className={classes.logoStyle}
-                style={{ marginTop: 15, width: 60, height: 60 }}
-              />,
-              ""
-            )}
-          </Grid>
-
-          <Grid
-            container
-            item
-            style={{
-              width: "50%",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
-            {reactFrameworkRow(<MySqlLogo style={{ marginTop: 10 }} />, " ")}
-            {reactFrameworkRow(<Neo4JLogo style={{ marginTop: 10 }} />, "")}
-            {reactFrameworkRow(
-              <ESLogo style={{ height: 50, width: 50, marginTop: 15 }} />,
-              "Elasticsearch"
-            )}
-          </Grid>
-        </Grid>
-      </Grid>
-    );
-  };
-
-  const renderOthers = () => {
-    return (
-      <Grid
-        container
-        justify="center"
-        align="center"
-        className={classes.othersContainer}
-      >
-        <Typography item variant="h4" justify="center" align="center">
-          Tools and Others
-        </Typography>
-        <Grid container style={{ flexDirection: "row" }}>
-          <Grid
-            container
-            item
-            style={{
-              width: "50%",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
-            {reactFrameworkRow(
-              <DockerLogo
-                className={classes.logoStyle}
-                style={{ margin: 0, width: 70, height: 70 }}
-              />,
-              "Docker"
-            )}
-            {reactFrameworkRow(
-              <GitLogo
-                className={classes.logoStyle}
-                style={{ marginBottom: 0, width: 70, height: 70 }}
-              />,
-              "Git"
-            )}
-            {reactFrameworkRow(<NifiLogo style={{ marginTop: 10 }} />, "")}
-            {reactFrameworkRow(
-              <SeleniumLogo style={{ height: 50, width: 50, marginTop: 15 }} />,
-              "Selenium"
-            )}
-            {reactFrameworkRow(
-              <GradleLogo style={{ height: 50, width: 50, marginTop: 15 }} />,
-              "Gradle"
-            )}
-          </Grid>
-
-          <Grid
-            container
-            item
-            style={{
-              width: "50%",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
-            {reactFrameworkRow(<CentOSLogo style={{ marginTop: 10 }} />, "")}
-            {reactFrameworkRow(
-              <FedoraLogo
-                className={classes.logoStyle}
-                style={{ marginTop: 15, width: 100, height: 100 }}
-              />,
-              ""
-            )}
-            {reactFrameworkRow(
-              <HtmlLogo style={{ marginTop: 10, width: 60, height: 60 }} />,
-              ""
-            )}
-            {reactFrameworkRow(
-              <CssLogo style={{ marginTop: 10, width: 60, height: 60 }} />,
-              ""
-            )}
-            {reactFrameworkRow(
-              <MaterialLogo style={{ height: 50, width: 50, marginTop: 15 }} />,
-              "Material"
-            )}
-          </Grid>
-        </Grid>
-      </Grid>
-    );
-  };
-
   const [memeSel, setMemeSel] = useState(0);
   const memes = [memeOne, memeTwo, memeThree, memeFour];
+  const memeClick = () => setMemeSel((prev) => (prev + 1) % memes.length);
 
-  const memeClick = (e) => {
-    setMemeSel((prevState) => (prevState + 1) % memes.length);
-  };
+  const interests = [
+    { text: "Reading", icon: <ChromeReaderMode />, color: "#38bdf8" },
+    { text: "Software Development", icon: <Computer />, color: "#a78bfa" },
+    { text: "Competitive Programming", icon: <Timeline />, color: "#f472b6" },
+    { text: "Swimming", icon: <Pool />, color: "#22d3ee" },
+    { text: "Drinking Tea", icon: <LocalCafe />, color: "#fbbf24" },
+    {
+      text: "Memes",
+      icon: (
+        <img
+          onClick={memeClick}
+          src={memes[memeSel]}
+          width={24}
+          height={24}
+          alt="meme"
+          style={{ cursor: "pointer" }}
+        />
+      ),
+      color: "#34d399",
+    },
+  ];
 
-  const renderMeme = () => {
-    return (
-      <img
-        onClick={memeClick}
-        item
-        src={memes[memeSel]}
-        width={25}
-        height={25}
-        style={{ alignSelf: "center" }}
-      />
-    );
-  };
+  const techItems = [
+    { logo: <ReactLogo className={classes.logoStyle} />, label: "React" },
+    { logo: <SpringLogo className={classes.logoStyle} />, label: "Spring" },
+    { logo: <FlaskLogo className={classes.logoStyle} style={{ width: 50, height: 50 }} />, label: "Flask" },
+    { logo: <MySqlLogo style={{ width: 60, height: 40 }} />, label: "MySQL" },
+    { logo: <Neo4JLogo style={{ width: 60, height: 40 }} />, label: "Neo4j" },
+    { logo: <ESLogo className={classes.logoStyle} />, label: "Elastic" },
+  ];
 
-  const renderAboutMe = () => {
-    return (
-      <Grid item className={classes.aboutMeContainer}>
-        <Typography
-          item
-          variant="h3"
-          style={{ textAlign: "center", marginBottom: 15 }}
-        >
-          About Me
-        </Typography>
-        <Grid
-          container
-          align="center"
-          justify="center"
-          style={{ flexDirection: "column" }}
-        >
-          <Typography item variant="h5" style={{ textAlign: "center" }}>
-            Hello! I am Wen Kai, a Software Engineer working in Tech Industry
-          </Typography>
+  const toolItems = [
+    { logo: <DockerLogo className={classes.logoStyle} style={{ width: 50, height: 50 }} />, label: "Docker" },
+    { logo: <GitLogo className={classes.logoStyle} style={{ width: 50, height: 50 }} />, label: "Git" },
+    { logo: <NifiLogo style={{ width: 50, height: 40 }} />, label: "NiFi" },
+    { logo: <SeleniumLogo className={classes.logoStyle} />, label: "Selenium" },
+    { logo: <GradleLogo className={classes.logoStyle} />, label: "Gradle" },
+    { logo: <HtmlLogo style={{ width: 40, height: 40 }} />, label: "HTML" },
+    { logo: <CssLogo style={{ width: 40, height: 40 }} />, label: "CSS" },
+    { logo: <MaterialLogo className={classes.logoStyle} />, label: "Material" },
+    { logo: <CentOSLogo style={{ width: 50, height: 40 }} />, label: "CentOS" },
+    { logo: <FedoraLogo className={classes.logoStyle} style={{ width: 50, height: 50 }} />, label: "Fedora" },
+  ];
 
-          <Grid item container justify="center">
-            <List item style={{ justifyContent: "center" }}>
-              <ListItem>
-                <Typography item variant="h5" style={{ textAlign: "center" }}>
-                  My Interests are
-                </Typography>
-              </ListItem>
-              <ListItem>{createText("Reading", <ChromeReaderMode />)}</ListItem>
-              <ListItem>
-                {createText(
-                  "Software Development",
-                  <Computer style={{ color: "#C0C0C0" }} />
-                )}
-              </ListItem>
-              <ListItem>
-                {createText(
-                  "Competitive Programming",
-                  <Timeline style={{ color: "990F02" }} />
-                )}
-              </ListItem>
-              <ListItem>
-                {createText("Swimming", <Pool style={{ color: "blue" }} />)}
-              </ListItem>
-              <ListItem>
-                {createText(
-                  "Drinking Tea",
-                  <LocalCafe style={{ color: "#923c01" }} />
-                )}
-              </ListItem>
-              <ListItem>{createText("Memes", renderMeme())}</ListItem>
-            </List>
-          </Grid>
-
-          <Typography item variant="body1" style={{ textAlign: "center" }}>
-            On this site, I hope to share resources and information.
-            <br />I will also be using the site to track my progress and
-            learning journey.
-          </Typography>
-        </Grid>
-      </Grid>
-    );
-  };
+  const renderTechGrid = (items) => (
+    <div className={classes.techGrid}>
+      {items.map((item, idx) => (
+        <div key={idx} className={classes.techCard}>
+          {item.logo}
+          <span className={classes.techLabel}>{item.label}</span>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
-    <div container className={classes.container}>
-      <Grid item className={classes.imgContainer}>
-        {AutoSlider(useWindowDimensions())}
-      </Grid>
+    <div className={classes.container}>
+      {/* Hero with slider + text overlay */}
+      <div className={classes.heroWrapper}>
+        <AutoSlider {...useWindowDimensions()} />
+        <div className={classes.heroOverlay}>
+          <Typography className={classes.heroTitle}>
+            Hello, I'm Wen Kai
+          </Typography>
+          <Typography className={classes.heroSubtitle}>
+            Software Engineer · Competitive Programmer · Reader
+          </Typography>
+        </div>
+      </div>
 
-      <Grid item className={classes.contentContainer}>
-        {renderAboutMe()}
-        {renderLanguageTable()}
-        {renderFrameWorks()}
-        {renderOthers()}
-      </Grid>
+      <div className={classes.contentContainer}>
+        {/* About Me */}
+        <Grid item className={classes.aboutMeContainer}>
+          <Typography variant="h4" className={classes.sectionTitle}>
+            About Me
+          </Typography>
+          <Typography className={classes.introText}>
+            I'm a Software Engineer working in the Tech Industry, passionate about
+            building software and solving algorithmic challenges.
+          </Typography>
+
+          <Grid
+            container
+            justify="center"
+            style={{ marginTop: 30, maxWidth: 500, margin: "30px auto 0" }}
+          >
+            {interests.map((item, idx) => (
+              <div key={idx} className={classes.interestCard}>
+                <ListItemIcon className={classes.interestIcon} style={{ color: item.color }}>
+                  {item.icon}
+                </ListItemIcon>
+                <Typography className={classes.interestText}>
+                  {item.text}
+                </Typography>
+              </div>
+            ))}
+          </Grid>
+
+          <Typography className={classes.missionText}>
+            On this site, I share resources, information, and track my progress
+            and learning journey.
+          </Typography>
+        </Grid>
+
+        {/* Programming Languages */}
+        <BasicTable />
+
+        {/* Frameworks & Databases */}
+        <div className={classes.techSection}>
+          <Typography variant="h4" className={classes.sectionTitle}>
+            Frameworks & Databases
+          </Typography>
+          {renderTechGrid(techItems)}
+        </div>
+
+        {/* Tools */}
+        <div className={classes.techSection}>
+          <Typography variant="h4" className={classes.sectionTitle}>
+            Tools & Others
+          </Typography>
+          {renderTechGrid(toolItems)}
+        </div>
+      </div>
     </div>
   );
 };

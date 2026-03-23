@@ -1,13 +1,6 @@
-// import "react-awesome-slider/dist/styles.css";
 import "./slider-styles.css";
 import AwesomeSlider from "react-awesome-slider";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
-
-// import imageOne from "../images/night_panorama.jpg";
-// import imageTwo from "../images/craterLake.jpg";
-// import imageThree from "../images/banff.jpg";
-// import imageFour from "../images/marina.jpg";
-// import imageFive from "../images/moraineLake.jpg";
 
 import imageOne from "../images/chureitoPagoda.jpg";
 import imageTwoA from "../images/kawaguchiko.jpg";
@@ -23,86 +16,63 @@ const AutoSlider = ({ height, width }) => {
   const smallScreen = width < 720;
 
   const AutoplaySlider = withAutoplay(AwesomeSlider);
+
+  const sliderStyle = {
+    width: "100%",
+    height: smallScreen ? 220 : 420,
+  };
+
+  const imgStyle = {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  };
+
   return (
-    <AutoplaySlider
-      bullets={false}
-      play={true}
-      cancelOnInteraction={false} // should stop playing on user interaction
-      interval={5000}
-    >
-      <div className="row">
-        <img
-          src={imageOne}
-          // width={smallScreen ? width : 1100}
-          max-width={"100%"}
-          height={smallScreen ? 150 : 350}
-        />
-      </div>
-      <div className="row">
-        <img
-          src={imageTwoA}
-          // width={smallScreen ? width : 1100}
-          max-width={"100%"}
-          height={smallScreen ? 150 : 350}
-        />
-      </div>
-      <div className="row">
-        <img
-          src={imageTwoB}
-          // width={smallScreen ? width : 1100}
-          max-width={"100%"}
-          height={smallScreen ? 150 : 350}
-        />
-      </div>
-      <div className="row">
-        <img
-          src={imageTwoC}
-          // width={smallScreen ? width : 1100}
-          max-width={"100%"}
-          height={smallScreen ? 150 : 350}
-        />
-      </div>
-      <div className="row">
-        <img
-          src={imageTwoD}
-          // width={smallScreen ? width : 1100}
-          max-width={"100%"}
-          height={smallScreen ? 150 : 350}
-        />
-      </div>
-      <div className="row">
-        <img
-          src={imageThree}
-          // width={smallScreen ? width : 1100}
-          max-width={"100%"}
-          height={smallScreen ? 150 : 350}
-        />
-      </div>
-      <div className="row">
-        <img
-          src={imageFour}
-          // width={smallScreen ? width : 1100}
-          max-width={"100%"}
-          height={smallScreen ? 150 : 350}
-        />
-      </div>
-      <div className="row">
-        <img
-          src={imageFive}
-          // width={smallScreen ? width : 1100}
-          max-width={"100%"}
-          height={smallScreen ? 150 : 350}
-        />
-      </div>
-      <div className="row">
-        <img
-          src={imageSix}
-          // width={smallScreen ? width : 1100}
-          max-width={"100%"}
-          height={smallScreen ? 150 : 350}
-        />
-      </div>
-    </AutoplaySlider>
+    <div style={{ position: "relative", width: "100%" }}>
+      <AutoplaySlider
+        bullets={false}
+        play={true}
+        cancelOnInteraction={false}
+        interval={5000}
+        style={sliderStyle}
+      >
+        {[imageOne, imageTwoA, imageTwoB, imageTwoC, imageTwoD, imageThree, imageFour, imageFive, imageSix].map(
+          (img, idx) => (
+            <div key={idx} style={{ width: "100%", height: "100%" }}>
+              <img src={img} alt="" style={imgStyle} />
+            </div>
+          )
+        )}
+      </AutoplaySlider>
+      {/* Full dark overlay for text contrast */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: "rgba(0, 0, 0, 0.45)",
+          pointerEvents: "none",
+          zIndex: 5,
+        }}
+      />
+      {/* Bottom gradient overlay for smooth transition to content */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 120,
+          background: "linear-gradient(to top, #0a0f1a 0%, transparent 100%)",
+          pointerEvents: "none",
+          zIndex: 10,
+        }}
+      />
+    </div>
   );
 };
+
 export default AutoSlider;
