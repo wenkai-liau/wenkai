@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/wen-kai/static/css/main.214d43b4.css",
-    "main.js": "/wen-kai/static/js/main.467f80b6.js",
+    "main.css": "/wen-kai/static/css/main.055f5920.css",
+    "main.js": "/wen-kai/static/js/main.b40c2edf.js",
     "static/js/787.43104ac7.chunk.js": "/wen-kai/static/js/787.43104ac7.chunk.js",
     "static/media/craterLake.jpg": "/wen-kai/static/media/craterLake.cc445d358d9288c3cad3.jpg",
     "static/media/marina.jpg": "/wen-kai/static/media/marina.bd21550a25a63776dcb6.jpg",
@@ -16,7 +16,6 @@
     "static/media/kawaguchiko3.jpg": "/wen-kai/static/media/kawaguchiko3.6fa68214b42a316a4277.jpg",
     "static/media/doge_error.png": "/wen-kai/static/media/doge_error.ff1bea58f0d0957cb31c.png",
     "static/media/atcoder.svg": "/wen-kai/static/media/atcoder.ce340f4a82685213733d106cb53c7a8c.svg",
-    "static/media/pikachu_meme.png": "/wen-kai/static/media/pikachu_meme.1957dbaf9809dad51d6a.png",
     "static/media/flask_logo.svg": "/wen-kai/static/media/flask_logo.b895607b707b858500de2a5db7a25ebd.svg",
     "static/media/perl.svg": "/wen-kai/static/media/perl.f459faf96fce87de78f26125bf9d3656.svg",
     "static/media/golang.svg": "/wen-kai/static/media/golang.c6b5b0a2490db0c32b570cf41ead9bac.svg",
@@ -36,20 +35,20 @@
     "static/media/cplus.svg": "/wen-kai/static/media/cplus.a776a608546a79750b150829bc9b099e.svg",
     "static/media/matlab.svg": "/wen-kai/static/media/matlab.8e6053506a862c53a0cdd611c194d7f0.svg",
     "static/media/elastic_logo.svg": "/wen-kai/static/media/elastic_logo.765bccc5c1d3cec4fad1de45b2cd740c.svg",
+    "index.html": "/wen-kai/index.html",
     "static/media/typescript.svg": "/wen-kai/static/media/typescript.0862127c02a57f6d39dabe211ae436ab.svg",
     "static/media/spring_logo.svg": "/wen-kai/static/media/spring_logo.1b1a327d7338f4720ce310041ab50712.svg",
-    "index.html": "/wen-kai/index.html",
     "static/media/material.svg": "/wen-kai/static/media/material.456bfb02539777f812137c514d397868.svg",
     "static/media/gradle_logo.svg": "/wen-kai/static/media/gradle_logo.652123037997de6aaa14d85f22a09fa4.svg",
     "static/media/c.svg": "/wen-kai/static/media/c.f645a5e133a8bbfbbbc53ae8fc512974.svg",
     "static/media/git_logo.svg": "/wen-kai/static/media/git_logo.6d27b5e0cde4ddb87e031ca706aa8350.svg",
     "static/media/javascript.svg": "/wen-kai/static/media/javascript.84ac97b2d839ad0e78473327947874a9.svg",
-    "main.214d43b4.css.map": "/wen-kai/static/css/main.214d43b4.css.map",
-    "main.467f80b6.js.map": "/wen-kai/static/js/main.467f80b6.js.map",
+    "main.055f5920.css.map": "/wen-kai/static/css/main.055f5920.css.map",
+    "main.b40c2edf.js.map": "/wen-kai/static/js/main.b40c2edf.js.map",
     "787.43104ac7.chunk.js.map": "/wen-kai/static/js/787.43104ac7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.214d43b4.css",
-    "static/js/main.467f80b6.js"
+    "static/css/main.055f5920.css",
+    "static/js/main.b40c2edf.js"
   ]
 }
