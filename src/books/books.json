@@ -1,0 +1,293 @@
+{
+  "read": [
+    {
+      "title": "Designing Data-Intensive Applications",
+      "author": "Kleppmann, Martin",
+      "rating": 4,
+      "difficulty": 4,
+      "comments": "In depth",
+      "category": "Technical",
+      "status": "read"
+    },
+    {
+      "title": "System Design Interview - An Insider's Guide",
+      "author": "Alex Xu",
+      "rating": 5,
+      "difficulty": 1,
+      "comments": "Light read",
+      "category": "Technical",
+      "status": "read"
+    },
+    {
+      "title": "A Promised Land",
+      "author": "Barrack Obama",
+      "rating": 5,
+      "difficulty": 0,
+      "comments": "A must read. Gives a brief overview on the power dynamics both in the USA and globally.",
+      "category": "Others",
+      "status": "read"
+    },
+    {
+      "title": "Grokking Algorithms: An illustrated guide for programmers and other curious people",
+      "author": "Aditya Y. Bhargava",
+      "rating": 3,
+      "difficulty": 0,
+      "comments": "Good book for learning basic algorithms",
+      "category": "Technical",
+      "status": "read"
+    },
+    {
+      "title": "Learning React, 2nd Edition",
+      "author": "Eve Porcello",
+      "rating": 4,
+      "difficulty": 2,
+      "comments": "",
+      "category": "Technical",
+      "status": "read"
+    },
+    {
+      "title": "Guide to Competitive Programming",
+      "author": "Antti Laaksonen",
+      "rating": 5,
+      "difficulty": 4,
+      "comments": "The best book on CP read thus far!",
+      "category": "Technical",
+      "status": "read"
+    },
+    {
+      "title": "Dynamic Programming for Coding interviews",
+      "author": "Meenakshi",
+      "rating": 4,
+      "difficulty": 3,
+      "comments": "Practical and example based book",
+      "category": "Technical"
+    },
+    {
+      "title": "Sapiens, A Brief History of Humankind",
+      "author": "Yuval Noah Harai",
+      "rating": 5,
+      "difficulty": 3,
+      "comments": "Top seller for a reason",
+      "category": "History"
+    },
+    {
+      "title": "Algorithms",
+      "author": "Sanjoy Dasgupta",
+      "rating": 3,
+      "difficulty": 5,
+      "comments": "A little bit dry in the middle",
+      "category": "Technical",
+      "status": "read"
+    },
+    {
+      "title": "Six Days of War",
+      "author": "Michael Oren",
+      "rating": 3,
+      "difficulty": 4,
+      "comments": "The detail to key people makes some parts hard to follow",
+      "category": "History"
+    },
+    {
+      "title": "Javascript for kids",
+      "author": "Nick Morgan",
+      "rating": 4,
+      "difficulty": 0,
+      "comments": "A fun book with plently of interesting projects! Highly recommended!",
+      "category": "Technical",
+      "status": "read"
+    },
+    {
+      "title": "The Road to React",
+      "author": "Robin Wieruch",
+      "rating": 5,
+      "difficulty": 1,
+      "comments": "A good balance between depth and breadth",
+      "category": "Technical",
+      "status": "read"
+    },
+    {
+      "title": "Introduction to Information Retrieval",
+      "author": "Christopher D. Manning",
+      "rating": 4,
+      "difficulty": 4,
+      "comments": "A good introduction to interved indexes and how information is efficiently stored.",
+      "category": "Technical",
+      "status": "read"
+    }
+  ],
+  "reading": [
+    {
+      "title": "Introduction to Algorithms, 2nd Edition",
+      "author": "Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein",
+      "rating": 4,
+      "difficulty": 4,
+      "comments": "Highly touted as the 'Bible' of Algorithms",
+      "category": "Technical",
+      "status": "reading"
+    },
+    {
+      "title": "Jerusalem",
+      "author": "Simon Sebag Montefiore",
+      "rating": 4,
+      "difficulty": 3,
+      "comments": "",
+      "category": "History",
+      "status": "reading"
+    }
+  ],
+  "toRead": [
+    {
+      "title": "Neither Civil nor Servant: The Philip Yeo Story",
+      "author": "Fook Kwang Han",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "Others",
+      "status": "toRead"
+    },
+    {
+      "title": "Big sister, Little Sister, Red sister",
+      "author": "Jung Chang",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "History",
+      "status": "toRead"
+    },
+    {
+      "title": "The Vietnam War: An Intricate History",
+      "author": "Geoffrey C. Ward",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "History",
+      "status": "toRead"
+    },
+    {
+      "title": "Wallenberg",
+      "author": "Kati Marton",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "History",
+      "status": "toRead"
+    },
+    {
+      "title": "The Opium War",
+      "author": "Julia Lovell",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "History",
+      "status": "toRead"
+    },
+    {
+      "title": "The Singapore Story",
+      "author": "Lee Kuan Yew",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "History",
+      "status": "toRead"
+    },
+    {
+      "title": "Vietnam, An epic tragedy",
+      "author": "Max Hastings",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "History",
+      "status": "toRead"
+    },
+    {
+      "title": "Amazon Unbound",
+      "author": "Brad Stone",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "Others",
+      "status": "toRead"
+    },
+    {
+      "title": "Clean Code, A handbook of agile software craftsmanship",
+      "author": "Robert C. Martin",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "Technical",
+      "status": "toRead"
+    },
+    {
+      "title": "Clean Architecture: A craftman's guide to software structure and design",
+      "author": "Robert C. Martin",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "Technical",
+      "status": "toRead"
+    },
+    {
+      "title": "Effective C++",
+      "author": "Scott Meyers",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "Technical",
+      "status": "toRead"
+    },
+    {
+      "title": "The Chancellor: The remarkable odyssey of Angela Merkel",
+      "author": "Kati Marton",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "Others",
+      "status": "toRead"
+    },
+    {
+      "title": "The Mythical Man-month",
+      "author": "Brooks, Jr. Frederick P.",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "Others",
+      "status": "toRead"
+    },
+    {
+      "title": "Ministry of Moral Panic",
+      "author": "Amanda Lee Koe",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "Others",
+      "status": "toRead"
+    },
+    {
+      "title": "17A Keong Saik Road",
+      "author": "Charmaine Leung",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "Others",
+      "status": "toRead"
+    },
+    {
+      "title": "Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software",
+      "author": "Eric Freeman, Elisabeth Robson",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "Technical",
+      "status": "toRead"
+    },
+    {
+      "title": "Head First Object-oriented Analysis and Design",
+      "author": "Brett McLaughlin, Gary Pollice, and David West",
+      "rating": 0,
+      "difficulty": 0,
+      "comments": "",
+      "category": "Technical",
+      "status": "toRead"
+    }
+  ]
+}
