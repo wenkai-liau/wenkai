@@ -164,7 +164,7 @@ const App = () => {
   };
 
   return (
-    <BrowserRouter basename="/wen-kai">
+    <BrowserRouter basename="/wenkai">
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className={classes.root}>
